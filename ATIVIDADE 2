@@ -1,0 +1,35 @@
+1.
+A) Funcionário (MATRÍCULA, nome, salário)
+Departamento (CÓDIGO, MATRÍCULA, nome)
+
+B) Endereço (ID, logradouro, número, cep, uf, cidade)
+Pessoa (ID, nome, sexo, cpf, inscrição, cnpj)
+
+C) Banco (CODBANCO, nome)
+Agencia (CODAGENCIA, CODBANCO, nome)
+Empresta (CODAGENCIA, CPF, ValorParcela, QTDEParcelas, TaxaJuros)
+Cliente (CPF, nome, DataNascimento)
+
+D) Fornecedor (ID_FORNECEDOR, nome)
+Produto (ID_PRODUTO, nome)
+Consumidor (ID_CONSUMIDOR, nome)
+Fornece (ID_FORNECEDOR, ID_PRODUTO, ID_CONSUMIDOR, data, quantidade)
+
+E) Aluno (MATRÍCULA, nome)
+Turma (NÚMERO, MATRÍCULA, sala)
+Professor (MATRÍCULA, nome, título)
+
+F) Cliente (CPF, nome)
+Financiamento (NÚMERO, CPF, data, valor, prazo)
+Veículo (RENAVAM, NÚMERO, valor, ano, NumEixo, CargaMax, NumPortas, Tamanho)
+
+G) Autor (EMAIL, nome)
+Livro (ISBN, EMAIL, NÚMERO, cnpj, título)
+Editora (CNPJ, nome)
+Exemplar (NÚMERO, DataAquisição)
+
+
+H) Paciente (CPF, nome)
+Telefone (CPF, NUMTELEFONE)
+Consulta (CPF, CRM, data)
+Médico (CRM, nome, especialidade)
