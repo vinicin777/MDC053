@@ -1,0 +1,27 @@
+1.	Resolva as consultas em Álgebra e Cálculo Relacional para o seguinte modelo relacional.
+
+a)	Forneça nome e titulação dos professores. (Projetar=Código / Seleção=Tudo)
+PI nome ^ Titulação (Professores)
+
+b) Forneça id, freqüência e nota dos alunos matriculados em 20042 na turma 1 da disciplina MDC053.
+PI ID_aluno, Frequência, Nota ( Sigma id_periodo = ‘20042’ ^ id_disciplina = ‘MDC053’ ^ id_turma = ‘1’ (Histórico))
+
+	c) Encontre a sala ocupada pela disciplina MDC053 em cada período que foi oferecida.
+	PI sala (Sigma id_disciplina = ‘MDC053’ ^ id_período(turma))
+
+d) Localize os alunos que tiveram aula com o professor 3056 em algum período.
+PI id_aluno ( Sigma id_professor = ‘3056’ ^ id_período( HISTÓRICO ⊗ TURMA  ))
+
+e) Forneça histórico escolar do aluno 199839550, contendo nome do aluno, período, nome da disciplina, freqüência e nota.
+PI (a.nome = d.nome) ( Sigma id_aluno = ‘199839550’ ^ id_periodo ^ id_disciplina ^ frequência ^ nota (Aluno X Histórico X Disciplina))
+
+f) Forneça os alunos que não possuem nota na disciplina MDC053.
+PI id_aluno – PI nota(Sigma Disciplina = ‘MDC053’(Histórico)
+
+g) Encontre as turmas do professor 3056 e do aluno 199839550.
+PI id_turma ( Sigma id_professor = ‘3056’ ^ id_aluno = ‘199839550’(Histórico x Turma) 
+
+i) Encontre o nome dos alunos que cursaram todas as disciplinas.
+PI id_aluno ( Sigma id_disciplina ( Disciplina X Aluno )
+
+	
