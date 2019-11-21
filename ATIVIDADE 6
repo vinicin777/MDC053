@@ -1,5 +1,5 @@
 A)
-CREATE DATABASES projetosP;
+CREATE DATABASE projetosP;
 
 USE projetosP;
 
