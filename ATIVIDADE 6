@@ -1,0 +1,139 @@
+A)
+CREATE DATABASES projetosP;
+
+USE projetosP;
+
+CREATE TABLE gerente(numero_gerente INT NOT NULL PRIMARY KEY,
+    nome_gerente VARCHAR(50) NOT NULL);
+
+CREATE TABLE departamento(numero_depto INT NOT NULL PRIMARY KEY,
+    nome_depto VARCHAR(50) NOT NULL);
+
+CREATE TABLE empregado(numero_empregado INT NOT NULL PRIMARY KEY,
+   nome_empregado VARCHAR(50) NOT NULL,
+    numero_depto INT REFERENCES departamento(numero_depto)
+    );
+
+CREATE TABLE projeto(numero_projeto INT NOT NULL PRIMARY KEY,
+   nome_projeto VARCHAR(50) NOT NULL,
+   data_inicio_projeto DATE,
+   numero_gerente INT NOT NULL REFERENCES gerente(numero_gerente)
+   );
+
+CREATE TABLE projeto_empregado(numero_projeto INT NOT NULL,
+    numero_empregado INT NOT NULL,
+    horas_trabalhadas_projeto INT,
+    PRIMARY KEY(numero_projeto, numero_empregado),
+    FOREIGN KEY(numero_projeto) REFERENCES projeto(numero_projeto),
+    FOREIGN KEY(numero_empregado) REFERENCES empregado(numero_empregado)
+    );
+    
+    
+    
+B)
+CREATE DATABASE pedidosP;
+
+USE pedidosP;
+
+CREATE TABLE fornecedor(cod_fornecedor INT NOT NULL PRIMARY KEY,
+nom_fornecedor VARCHAR(50) NOT NULL,
+end_fornecedor VARCHAR(50)
+);
+
+CREATE TABLE material(cod_material INT NOT NULL PRIMARY KEY,
+dsc_material VARCHAR(50) NOT NULL,
+vlr_unitario DECIMAL(12,2) NOT NULL);
+
+CREATE TABLE pedido(cod_pedido INT NOT NULL PRIMARY KEY,
+dat_emissao DATE NOT NULL,
+cod_fornecedor INT NOT NULL REFERENCES fornecedor(cod_fornecedor),
+vlr_total_pedido DECIMAL(12,2) DEFAULT 0);
+
+CREATE TABLE pedido_material(cod_pedido INT NOT NULL,
+cod_material INT NOT NULL,
+qtde_material SMALINT NOT NULL CHECK(qtde_material>0),
+vlr_material DECIMAL(10,2) NOT NULL,
+PRIMARY KEY(cod_pedido, cod_material),
+FOREIGN KEY(cod_pedido) REFERENCES pedido(cod_pedido),
+FOREIGN KEY(cod_material) REFERENCES material(cod_material)
+);
+
+
+
+C)
+CREATE DATABASE alunosP;
+
+USE alunosP;
+
+CREATE TABLE curso(id_curso INT PRIMARY KEY,
+nome_curso VARCHAR(50) NOT NULL,
+carga_horaria SMALL INT);
+
+CREATE TABLE aluno(id_aluno INT NOT NULL PRIMARY KEY,
+nome_aluno VARCHAR(50) NOT NULL,
+email_aluno VARCHAR(50),
+fone_contato CHAR(14));
+
+CREATE TABLE turma(id_turma INT NOT NULL PRIMARY KEY,
+id_curso INT NOT NULL,
+id_aluno INT NOT NULL,
+FOREIGN KEY(id_curso) REFERENCES curso(id_curso),
+FOREIGN KEY(id_aluno) REFERENCES aluno(id_aluno),
+data_matricula DATE NOT NULL);
+
+
+
+D)
+CREATE DATABASE atendimentoP;
+
+USE atendimentoP;
+
+CREATE TABLE especialidade(cod_especialidade INT NOT NULL PRIMARY KEY,
+dsc_especialidade VARCHAR(50) NOT NULL);
+
+CREATE TABLE paciente(id_paciente INT NOT NULL PRIMARY KEY,
+nome_paciente VARCHAR(50) NOT NULL);
+
+CREATE TABLE medico(cod_medico INT PRIMARY KEY,
+nome_medico VARCHAR(50) NOT NULL,
+cod_especialidade INT NOT NULL,
+FOREIGN KEY(cod_especialidade) REFERENCES especialidade(cod_especialidade)
+);
+
+CREATE TABLE consulta(id_consulta INT NOT NULL PRIMARY KEY,
+cod_medico INT NOT NULL,
+FOREIGN KEY(cod_medico) REFERENCES medico(cod_medico),
+id_paciente INT NOT NULL,
+FOREIGN KEY(id_paciente) REFERENCES paciente(id_paciente),
+data_consulta DATE NOT NULL);
+
+
+
+E)
+CREATE DATABASE alugaP;
+
+USE alugaP;
+
+CREATE TABLE editora(cod_editora INT NOT NULL PRIMARY KEY,
+nom_editora VARCHAR(50) NOT NULL);
+
+CREATE TABLE aluno(id_aluno INT NOT NULL PRIMARY KEY,
+num_matricula INT NOT NULL UNIQUE,
+nom_aluno VARCHAR(50) NOT NULL);
+
+CREATE TABLE livro(id_livro INT PRIMARY KEY,
+num_isbn CHAR(13) NOT NULL UNIQUE,
+tit_livro VARCHAR(50) NOT NULL,
+num_paginas SMALLINT CHECK(num_paginas>0),
+cod_editora INT NOT NULL,
+FOREIGN KEY(cod_editora) REFERENCES editora(cod_editora)
+);
+
+CREATE TABLE emprestimo(id_emprestimo INT NOT NULL PRIMARY KEY,
+id_livro INT NOT NULL,
+id_aluno INT NOT NULL,
+dat_emprestimo DATE NOT NULL,
+dat_devolucao DATE,
+FOREIGN KEY(id_livro) REFERENCES livro(id_livro),
+FOREIGN KEY(id_aluno) REFERENCES aluno(id_aluno)
+);
