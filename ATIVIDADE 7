@@ -1,0 +1,41 @@
+B) INSERT INTO aluno(id_aluno) VALUE(1);
+-Necessário preenchimento do nome_aluno;
+
+C) insert into aluno value (1, 'JOSE'), (2, 'MARIA'), (3, 'BRUNO'), (4, 'CARLA'), (5, 'PEDRO');
+
+D) insert into disciplina value(1, 'BANCO DE DADOS I', -1);
+A ferramenta não obedece a regra CHECK(carga_horaria > 0).
+
+E) insert into discliplina value(1, ‘BANCO DE DADOS I’, 60), (2, ‘BANCO DE DADOS II’, 60);
+
+F) insert into professor value(1, 'LETICIA'), (2, 'JOSE REGINALDO');
+
+G) insert into turma(id_turma, num_periodo) value(1, 20192);
+-A ferramenta aceitou., mas não preencheu id_professor, nem id_disciplina.
+
+H) insert into turma(id_turma, num_periodo) value(1, 20201);
+-O programa reconheceu o erro e concluiu com chave primária duplicada.
+
+I)insert into turma(id_turma, num_periodo, id_professor) value(2, 20201, 3);
+-O programa não preencheu a tabela, pois não existe um professor com id_professor = 3;
+
+J) insert into turma value(3, 20201, 1, 1), (4, 20202, 2, 2);
+
+K) insert into historico(id_historico, id_turma, id_aluno)
+value(1,1,1), (2,1,2), (3,1,3), (4,1,4), (5,3,1), (6,3,2), (7,4,3), (8,4,4);
+
+L) update aluno set nome_aluno = 'JOAO' where id_aluno=1;
+
+M) update disciplina set id_disciplina = 3 where id_disciplina=1;
+-Não pode mudar o id_disciplina, pois é uma chave primaria e uma chave estrangeira em outra tabela.
+
+N) update historico set media_final = 5 where id_turma = 4;
+
+O) delete from aluno where id_aluno=5;
+-Pedro foi removido da tabela aluno.
+
+P) delete from disciplina where id_disciplina=2;
+-Não pode deletar o Banco de Dados II, pois está relacionado com outras tabelas.
+
+Q) delete from professor where id_professor=2;
+O professor foi deletado do banco de dados junto com todas as suas relações.
